@@ -1,67 +1,139 @@
 "use client";
-
 import { useState } from "react";
-import { Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Search, Calendar as CalendarIcon, Minus, Plus } from "lucide-react";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
 
-export default function SearchBar() {
-  const [location, setLocation] = useState("");
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState<number>(1);
+const SearchBar = () => {
+  const [activeField, setActiveField] = useState<"where" | "checkIn" | "checkOut" | "who" | null>(null);
+  const [checkInDate, setCheckInDate] = useState<Date | undefined>();
+  const [checkOutDate, setCheckOutDate] = useState<Date | undefined>();
+  const [guests, setGuests] = useState({ adults: 0, children: 0, infants: 0 });
 
-  const handleSearch = () => {
-    console.log({
-      location,
-      checkIn,
-      checkOut,
-      guests,
-    });
-    // You can navigate with router.push(`/search?location=${location}...`)
-  };
+  const handleFocus = (field: typeof activeField) => setActiveField(field);
+  const handleBlur = () => setTimeout(() => setActiveField(null), 100);
+  const handleGuestChange = (type: keyof typeof guests, delta: number) =>
+    setGuests(prev => ({ ...prev, [type]: Math.max(0, prev[type] + delta) }));
+
+  const totalGuests = guests.adults + guests.children;
+  const guestText = totalGuests > 0 ? `${totalGuests} guests${guests.infants > 0 ? `, ${guests.infants} infants` : ""}` : "Add guests";
+
+  const fieldClass = (field: typeof activeField) =>
+    `flex flex-col py-2 rounded-full transition ${activeField === field ? "bg-white shadow-md" : "hover:bg-gray-100"}`;
 
   return (
-    <div className="hidden md:flex items-center gap-2 border rounded-full shadow-sm px-4 py-2 hover:shadow-md transition bg-white">
-      {/* Location */}
-      <input
-        type="text"
-        placeholder="Where?"
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-        className="px-2 py-1 focus:outline-none text-sm w-32"
-      />
+    <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_2fr] gap-2 max-w-2xl lg:max-w-4xl px-10 mx-auto p-1 border-2 rounded-full shadow-md bg-white">
+      
+      {/* Where */}
+      <div
+        className={fieldClass("where")}
+        tabIndex={0}
+        onFocus={() => handleFocus("where")}
+        onBlur={handleBlur}
+      >
+        <label className="text-xs font-semibold text-gray-500">Where</label>
+        <Input
+          type="text"
+          placeholder="Search destinations"
+          className="border-0 outline-none focus:ring-0 bg-transparent placeholder-gray-400 text-sm"
+          autoComplete="off"
+        />
+      </div>
 
-      {/* Check-in */}
-      <input
-        type="date"
-        value={checkIn}
-        onChange={(e) => setCheckIn(e.target.value)}
-        className="px-2 py-1 focus:outline-none text-sm"
-      />
+      {/* Check In */}
+      <Popover>
+        <PopoverTrigger asChild>
+          <div
+            className={fieldClass("checkIn")}
+            tabIndex={0}
+            onFocus={() => handleFocus("checkIn")}
+            onBlur={handleBlur}
+          >
+            <label className="text-xs font-semibold text-gray-500">Check In</label>
+            <Button variant="ghost" className="p-0 h-auto font-normal justify-start text-sm text-gray-400 hover:bg-transparent">
+              <CalendarIcon className="mr-1 h-4 w-4" />
+              {checkInDate ? format(checkInDate, "MMM d") : "Add dates"}
+            </Button>
+          </div>
+        </PopoverTrigger>
+        <PopoverContent className="p-2 w-auto" align="start">
+          <Calendar mode="single" selected={checkInDate} onSelect={setCheckInDate} initialFocus />
+        </PopoverContent>
+      </Popover>
 
-      {/* Check-out */}
-      <input
-        type="date"
-        value={checkOut}
-        onChange={(e) => setCheckOut(e.target.value)}
-        className="px-2 py-1 focus:outline-none text-sm"
-      />
+      {/* Check Out */}
+      <Popover>
+        <PopoverTrigger asChild>
+          <div
+            className={fieldClass("checkOut")}
+            tabIndex={0}
+            onFocus={() => handleFocus("checkOut")}
+            onBlur={handleBlur}
+          >
+            <label className="text-xs font-semibold text-gray-500">Check Out</label>
+            <Button variant="ghost" className="p-0 h-auto font-normal justify-start text-sm text-gray-400 hover:bg-transparent">
+              <CalendarIcon className="mr-1 h-4 w-4" />
+              {checkOutDate ? format(checkOutDate, "MMM d") : "Add dates"}
+            </Button>
+          </div>
+        </PopoverTrigger>
+        <PopoverContent className="p-2 w-auto" align="start">
+          <Calendar mode="single" selected={checkOutDate} onSelect={setCheckOutDate} initialFocus />
+        </PopoverContent>
+      </Popover>
 
       {/* Guests */}
-      <input
-        type="number"
-        min={1}
-        value={guests}
-        onChange={(e) => setGuests(Number(e.target.value))}
-        className="px-2 py-1 focus:outline-none text-sm w-16"
-      />
-
-      {/* Search Button */}
-      <button
-        onClick={handleSearch}
-        className="bg-red-500 text-white p-2 rounded-full ml-2 hover:bg-red-600 transition"
-      >
-        <Search size={16} />
-      </button>
+      <Popover>
+        <PopoverTrigger asChild>
+          <div
+            className={`flex items-center justify-between px-4 py-2 rounded-full transition ${activeField === "who" ? "bg-white shadow-md" : "hover:bg-gray-100"}`}
+            tabIndex={0}
+            onFocus={() => handleFocus("who")}
+            onBlur={handleBlur}
+          >
+            <div className="flex flex-col">
+              <label className="text-xs font-semibold text-gray-500">Who</label>
+              <Input
+                type="text"
+                value={guestText}
+                readOnly
+                className="border-0 outline-none focus:ring-0 bg-transparent placeholder-gray-400 text-sm"
+              />
+            </div>
+            <Button type="submit" className="bg-rose-500 p-3 rounded-full text-white flex items-center justify-center">
+              <Search size={20} />
+            </Button>
+          </div>
+        </PopoverTrigger>
+        <PopoverContent className="p-3 w-64" align="end">
+          <div className="flex flex-col gap-3">
+            {["adults", "children", "infants"].map((type) => (
+              <div key={type} className="flex justify-between items-center">
+                <div>
+                  <div className="font-semibold capitalize">{type}</div>
+                  <div className="text-gray-500 text-sm">
+                    {type === "adults" ? "Ages 13+" : type === "children" ? "Ages 2–12" : "Under 2"}
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button variant="outline" size="icon" onClick={() => handleGuestChange(type as keyof typeof guests, -1)}>
+                    <Minus className="h-4 w-4" />
+                  </Button>
+                  <span>{guests[type as keyof typeof guests]}</span>
+                  <Button variant="outline" size="icon" onClick={() => handleGuestChange(type as keyof typeof guests, 1)}>
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </PopoverContent>
+      </Popover>
     </div>
   );
-}
+};
+
+export default SearchBar;
