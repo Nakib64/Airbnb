@@ -24,7 +24,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
   const { i18n } = useTranslation("common");
-
+  console.log(i18n.language);
   // Ensure component only renders after client mounts
   useEffect(() => {
     setMounted(true);

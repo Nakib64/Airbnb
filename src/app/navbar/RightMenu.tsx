@@ -19,11 +19,8 @@ import { useTranslation } from 'react-i18next';
 
 const RightMenu = () => {
     const [isLangOpen, setIsLangOpen] = useState<boolean>(false);
-    const [language , setLanguage] = useState<string>('en')
     const { t, i18n } = useTranslation("common");
-    useEffect(()=>{
-        i18n.changeLanguage(language)
-    },[language, i18n])
+    
 
     return (
         <div className="md:flex hidden items-center space-x-4">
@@ -43,7 +40,7 @@ const RightMenu = () => {
                         <button
                             onClick={() => {
                                 setIsLangOpen(false)
-                                setLanguage("en")
+                                i18n.changeLanguage("en")
                             }}
                             className="px-4 py-2 rounded hover:bg-gray-100"
                         >
@@ -52,7 +49,7 @@ const RightMenu = () => {
                         <button
                              onClick={() => {
                                 setIsLangOpen(false)
-                                setLanguage("bn")
+                                i18n.changeLanguage("bn")
                             }}
                             className="px-4 py-2 rounded hover:bg-gray-100"
                         >
