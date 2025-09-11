@@ -18,10 +18,9 @@ import {
 import { useTranslation } from 'react-i18next';
 
 const RightMenu = () => {
-    const [isLangOpen, setIsLangOpen] = useState(false);
-    const [language , setLanguage] = useState("en")
+    const [isLangOpen, setIsLangOpen] = useState<boolean>(false);
+    const [language , setLanguage] = useState<string>('en')
     const { t, i18n } = useTranslation("common");
-
     useEffect(()=>{
         i18n.changeLanguage(language)
     },[language])
@@ -29,7 +28,7 @@ const RightMenu = () => {
     return (
         <div className="md:flex hidden items-center space-x-4">
             {/* Become a Host */}
-            <p className="hidden xl:block cursor-pointer">Become a Host</p>
+            <p className="hidden xl:block cursor-pointer">{t("host")}</p>
 
             {/* Globe Icon Drawer for Language */}
             <Dialog open={isLangOpen} onOpenChange={setIsLangOpen}>
