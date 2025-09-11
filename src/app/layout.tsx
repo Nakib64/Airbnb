@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import I18nProvider from "../lib/I18nProvider";
-// import Navbar from "./navbar/Navbar";
+import Navbar from "./navbar/Navbar";
 import Footer from "./Footer/Footer";
 
 const geistSans = Geist({
@@ -31,12 +31,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col gap-4`}
       >
         <I18nProvider>
-          {/* <Navbar></Navbar> */}
+          <Navbar></Navbar>
           <main className="flex-1">
             {/* {children} */}
           </main>
           
-          {/* <Footer></Footer> */}
+          <Footer></Footer>
         </I18nProvider>
 
       </body>
