@@ -7,7 +7,7 @@ import {
     DialogTrigger,
     DialogHeader,
     DialogTitle,
-    DialogClose,
+ 
 } from '@/components/ui/dialog';
 import {
     DropdownMenu,
@@ -23,7 +23,7 @@ const RightMenu = () => {
     const { t, i18n } = useTranslation("common");
     useEffect(()=>{
         i18n.changeLanguage(language)
-    },[language])
+    },[language, i18n])
 
     return (
         <div className="md:flex hidden items-center space-x-4">

@@ -2,13 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import { Card, CardContent } from "@/components/ui/card";
 import HotelsSection from "./HotelSection/Hotelsec";
 
 interface Hotel {
@@ -61,12 +55,6 @@ export default function Home() {
   if (!mounted) return null; // ⬅️ prevents hydration mismatch
   if (loading) return <p className="text-center mt-20">Loading...</p>;
 
-  const divisions: { name: string; data: Hotel[] }[] = [
-    { name: "Dhaka", data: dhaka },
-    { name: "Chittagong", data: chittagong },
-    { name: "Khulna", data: khulna },
-    { name: "Rajshahi", data: rajshahi },
-  ];
 
   return (
     <div className="px-4 md:px-12 py-6 space-y-16">
