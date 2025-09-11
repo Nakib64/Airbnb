@@ -1,0 +1,19 @@
+{
+  "Home": "হোম",
+  "Experience": "অভিজ্ঞতা",
+  "Services": "সেবা সমূহ",
+    "login": "লগ ইন",
+  "signup": "সাইন আপ",
+  "trips": "ভ্রমণ",
+  "wishlists": "উইশলিস্ট",
+  "account": "অ্যাকাউন্ট",
+  "help": "সহায়তা",
+  "logout": "লগ আউট",
+
+  "where": "কোথায়",
+  "searchDestinations": "গন্তব্য খুঁজুন",
+  "checkIn": "চেক ইন",
+  "checkOut": "চেক আউট",
+  "addDates": "তারিখ যোগ করুন",
+  "who": "কারা"
+}

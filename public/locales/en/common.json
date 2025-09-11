@@ -1,0 +1,19 @@
+{
+  "Home": "Home",
+  "Services": "Services",
+  "Experience": "Experience",
+    "login": "Log in",
+  "signup": "Sign up",
+  "trips": "Trips",
+  "wishlists": "Wishlists",
+  "account": "Account",
+  "help": "Help",
+  "logout": "Log out",
+  "where": "Where",
+  "searchDestinations": "Search destinations",
+  "checkIn": "Check In",
+  "checkOut": "Check Out",
+  "addDates": "Add dates",
+  "who": "Who"
+
+}

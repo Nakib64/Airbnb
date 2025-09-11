@@ -1,16 +1,18 @@
 "use client";
-
+import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
-import { Menu, Globe, User, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import SearchBar from "./Searchbar";
 import { usePathname } from "next/navigation";
+import RightMenu from "./RightMenu";
+import { Search } from "lucide-react";
 
 export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false);
     const [hideNavButtons, setHideNavButtons] = useState(false);
     const [lastScroll, setLastScroll] = useState(0);
+
+    const { t, i18n } = useTranslation("common");
 
     const pathname = usePathname();
 
@@ -52,7 +54,7 @@ export default function Navbar() {
                                 }`}
                         >
                             <Image src={navlink.logo} alt="" width={36} height={36} />
-                            <span className="font-medium">{navlink.title}</span>
+                            <span className="font-medium">{t(navlink.title)}</span>
                         </button>
                     </Link>
                 );
@@ -61,8 +63,8 @@ export default function Navbar() {
     );
 
     return (
-        <header className="sticky top-0 z-50 w-full shadow-md md:pb-12 pt-4">
-            <div className="w-full mx-auto flex flex-col gap-2 md:flex-row items-center justify-between md:px-6 md:py-3">
+        <header className="sticky top-0 z-50 w-full shadow-md md:pb-12 pt-4 md:pt-0">
+            <div className="w-full mx-auto flex flex-col gap-2 md:flex-row items-center justify-between md:px-6">
                 {/* Left - Logo */}
                 <Link href="/" className="md:flex items-center gap-1 hidden ">
                     <Image src="/logo.svg" alt="Airbnb" width={28} height={28} priority />
@@ -78,47 +80,7 @@ export default function Navbar() {
                 <NavButtons />
 
                 {/* Right - Menu */}
-                <div className="md:flex hidden items-center space-x-4">
-                    <p className="hidden xl:block cursor-pointer">Become a Host</p>
-                    <Globe className="cursor-pointer" />
-
-                    <div className="relative">
-                        <button
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="flex items-center space-x-2 border p-2 rounded-full hover:shadow-md transition"
-                        >
-                            <Menu size={18} />
-                            <User size={18} />
-                        </button>
-
-                        {isOpen && (
-                            <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-xl border overflow-hidden">
-                                <Link href="/login" className="block px-4 py-2 hover:bg-gray-100">
-                                    Log in
-                                </Link>
-                                <Link href="/signup" className="block px-4 py-2 hover:bg-gray-100">
-                                    Sign up
-                                </Link>
-                                <hr />
-                                <Link href="/trips" className="block px-4 py-2 hover:bg-gray-100">
-                                    Trips
-                                </Link>
-                                <Link href="/wishlists" className="block px-4 py-2 hover:bg-gray-100">
-                                    Wishlists
-                                </Link>
-                                <Link href="/account" className="block px-4 py-2 hover:bg-gray-100">
-                                    Account
-                                </Link>
-                                <Link href="/help" className="block px-4 py-2 hover:bg-gray-100">
-                                    Help
-                                </Link>
-                                <Link href="/logout" className="block px-4 py-2 hover:bg-gray-100">
-                                    Log out
-                                </Link>
-                            </div>
-                        )}
-                    </div>
-                </div>
+                <RightMenu></RightMenu>
             </div>
 
             {/* Middle - Search */}
