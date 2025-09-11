@@ -37,9 +37,9 @@ export default function Navbar() {
 
   const NavButtons = () => (
     <div
-      className={`flex w-full justify-evenly md:justify-center gap-2 md:gap-4 lg:gap-8 items-center transition-all duration-500 transform origin-top ${
-        hideNavButtons ? " hidden" : "scale-y-100 opacity-100"
-      }`}
+    className={`flex justify-evenly md:justify-center gap-2 md:gap-4 lg:gap-8 items-center
+    ${hideNavButtons ? "max-h-0 opacity-0" : "max-h-40 opacity-100"}
+  `}
     >
       {navlinks.map((navlink) => {
         const isActive = pathname === navlink.route;

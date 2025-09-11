@@ -69,14 +69,14 @@ export default function Home() {
   ];
 
   return (
-    <main className="px-4 md:px-12 py-6 space-y-16">
-      <main className="px-4 md:px-12 py-6 space-y-12">
+    <div className="px-4 md:px-12 py-6 space-y-16">
+    
         <HotelsSection title="Dhaka" hotels={dhaka} />
         <HotelsSection title="Chittagong" hotels={chittagong} />
         <HotelsSection title="Khulna" hotels={khulna} />
         <HotelsSection title="Rajshahi" hotels={rajshahi} />
-      </main>
+      </div>
 
-    </main>
+
   );
 }

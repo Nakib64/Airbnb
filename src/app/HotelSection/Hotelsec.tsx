@@ -73,6 +73,7 @@ export default function HotelsSection({ title, hotels }: HotelsSectionProps) {
                 alt={hotel.title}
                 width={400}
                 height={400}
+                unoptimized
                 className="w-full aspect-square object-cover rounded-xl"
               />
               {hotel.isFavourite && (
