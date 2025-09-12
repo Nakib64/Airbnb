@@ -32,10 +32,10 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const [dhakaRes, ctgRes, khulnaRes, rajRes] = await Promise.all([
-          axios.get(`http://localhost:5000/hotels?division=dhaka&language=${i18n.language}`),
-          axios.get(`http://localhost:5000/hotels?division=chittagong&language=${i18n.language}`),
-          axios.get(`http://localhost:5000/hotels?division=khulna&language=${i18n.language}`),
-          axios.get(`http://localhost:5000/hotels?division=rajshahi&language=${i18n.language}`),
+          axios.get(`https://airbnb-server-rx37.vercel.app/hotels?division=dhaka&language=${i18n.language}`),
+          axios.get(`https://airbnb-server-rx37.vercel.app/hotels?division=chittagong&language=${i18n.language}`),
+          axios.get(`https://airbnb-server-rx37.vercel.app/hotels?division=khulna&language=${i18n.language}`),
+          axios.get(`https://airbnb-server-rx37.vercel.app/hotels?division=rajshahi&language=${i18n.language}`),
         ]);
 
         setDhaka(dhakaRes.data);

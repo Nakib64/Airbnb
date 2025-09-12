@@ -32,10 +32,10 @@ export default function Experience() {
     const fetchData = async () => {
       try {
         const [dhakaRes, ctgRes, khulnaRes, rajRes] = await Promise.all([
-          axios.get(`http://localhost:5000/experiences?division=dhaka&language=${i18n.language}`),
-          axios.get(`http://localhost:5000/experiences?division=chittagong&language=${i18n.language}`),
-          axios.get(`http://localhost:5000/experiences?division=khulna&language=${i18n.language}`),
-          axios.get(`http://localhost:5000/experiences?division=rajshahi&language=${i18n.language}`),
+          axios.get(`https://airbnb-server-rx37.vercel.app/experiences?division=dhaka&language=${i18n.language}`),
+          axios.get(`https://airbnb-server-rx37.vercel.app/experiences?division=chittagong&language=${i18n.language}`),
+          axios.get(`https://airbnb-server-rx37.vercel.app/experiences?division=khulna&language=${i18n.language}`),
+          axios.get(`https://airbnb-server-rx37.vercel.app/experiences?division=rajshahi&language=${i18n.language}`),
         ]);
 
         setDhaka(dhakaRes.data);

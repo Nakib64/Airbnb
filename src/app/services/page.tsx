@@ -30,10 +30,10 @@ export default function Experience() {
         const fetchData = async () => {
             try {
                 const [photoRes, chefRes, cateringRes, trainingRes] = await Promise.all([
-                    axios.get(`http://localhost:5000/services?category=photography&language=${i18n.language}`),
-                    axios.get(`http://localhost:5000/services?category=chef&language=${i18n.language}`),
-                    axios.get(`http://localhost:5000/services?category=catering&language=${i18n.language}`),
-                    axios.get(`http://localhost:5000/services?category=training&language=${i18n.language}`),
+                    axios.get(`https://airbnb-server-rx37.vercel.app/services?category=photography&language=${i18n.language}`),
+                    axios.get(`https://airbnb-server-rx37.vercel.app/services?category=chef&language=${i18n.language}`),
+                    axios.get(`https://airbnb-server-rx37.vercel.app/services?category=catering&language=${i18n.language}`),
+                    axios.get(`https://airbnb-server-rx37.vercel.app/services?category=training&language=${i18n.language}`),
                 ]);
 
                 setPhotography(photoRes.data);
