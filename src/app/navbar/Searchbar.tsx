@@ -26,7 +26,7 @@ const SearchBar = () => {
     `flex flex-col rounded-full py-2 px-4 transition ${activeField === field ? "bg-white shadow-md" : "hover:bg-gray-100"}`;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_2fr] gap-2 max-w-2xl lg:max-w-4xl  mx-auto p-1 border-2 rounded-full shadow-md bg-white">
+    <div className="md:grid hidden grid-cols-1 md:grid-cols-[2fr_1fr_1fr_2fr] gap-2 max-w-2xl lg:max-w-4xl  mx-auto p-1 border-2 rounded-full shadow-md bg-white">
       
       {/* Where */}
       <div

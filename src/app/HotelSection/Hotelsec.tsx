@@ -16,7 +16,8 @@ interface Hotel {
   description: string;
   price: number;
   images: string[];
-  isFavourite: boolean;
+  isPopular?: boolean;
+  isFavourite?: boolean;
 }
 
 interface HotelsSectionProps {
@@ -79,6 +80,11 @@ export default function HotelsSection({ title, hotels }: HotelsSectionProps) {
               {hotel.isFavourite && (
                 <span className="absolute top-3 left-3 bg-white text-black/80 text-xs font-semibold px-2 py-1 rounded-lg">
                   {t("fav")}
+                </span>
+              )}
+              {hotel.isPopular && (
+                <span className="absolute top-3 left-3 bg-white text-black/80 text-xs font-semibold px-2 py-1 rounded-lg">
+                  {t("pop")}
                 </span>
               )}
 

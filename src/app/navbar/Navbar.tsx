@@ -37,7 +37,7 @@ export default function Navbar() {
 
   const NavButtons = () => (
     <div
-    className={`flex justify-evenly md:justify-center gap-2 md:gap-4 lg:gap-8 items-center
+    className={`flex justify-evenly w-full mx-auto md:justify-center gap-2 md:gap-4 lg:gap-8 items-center
     ${hideNavButtons ? "max-h-0 opacity-0" : "max-h-40 opacity-100"}
   `}
     >
@@ -46,7 +46,7 @@ export default function Navbar() {
         return (
           <Link href={navlink.route} key={navlink.route}>
             <button
-              className={`flex items-center flex-col md:flex-row md:gap-2 py-2 hover:bg-gray-100 transition-colors duration-200 ${
+              className={`flex items-center p-2 rounded-t-2xl flex-col md:flex-row md:gap-2 py-2 hover:bg-gray-100 transition-colors duration-200 ${
                 isActive ? "border-b-4 border-black" : ""
               }`}
             >
@@ -67,9 +67,17 @@ export default function Navbar() {
           <Image src="/logo.svg" alt="Airbnb" width={28} height={28} priority />
           <p className="hidden md:block text-red-400 text-xl font-bold">airbnb</p>
         </Link>
+         {/* Small device search */}
+      <div
+        className={`w-full px-4 rounded-full shadow-lg md:hidden text-center border flex justify-center items-center py-4 transition-all duration-500 ${
+          hideNavButtons ? "mt-0" : "mt-4"
+        }`}
+      >
+        <Search size={28} /> Start your search
+      </div>
 
         {/* Middle - Nav & Search */}
-        <div className="flex flex-col w-full md:w-auto items-start md:items-center relative justify-center">
+        <div className="flex flex-col  w-full md:w-auto items-start md:items-center relative justify-center">
           <NavButtons />
 
           {/* SearchBar - moves up smoothly */}
@@ -86,14 +94,7 @@ export default function Navbar() {
         <RightMenu />
       </div>
 
-      {/* Small device search */}
-      <div
-        className={`w-full px-4 rounded-full shadow-lg md:hidden text-center border flex justify-center items-center py-4 transition-all duration-500 ${
-          hideNavButtons ? "mt-0" : "mt-4"
-        }`}
-      >
-        <Search size={28} /> Start your search
-      </div>
+     
     </header>
   );
 }
