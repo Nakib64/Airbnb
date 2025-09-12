@@ -11,11 +11,11 @@ import React from "react";
 
 interface Hotel {
   _id: string;
-  division: string;
-  city: string;
+  division?: string;
+  city?: string;
   title: string;
   description: string;
-  price: number;
+  price?: number;
   images: string[];
   isPopular?: boolean;
   isFavourite?: boolean;
@@ -75,7 +75,9 @@ export default function HotelsSection({ title, hotels }: HotelsSectionProps) {
   );
 }
 
-// Separate HotelCard component
+// ----------------------
+// HotelCard Component
+// ----------------------
 function HotelCard({ hotel }: { hotel: Hotel }) {
   const [loaded, setLoaded] = React.useState(false);
 
@@ -85,9 +87,10 @@ function HotelCard({ hotel }: { hotel: Hotel }) {
       <div className="relative w-full aspect-square">
         {!loaded && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-            <div className="w-8 h-8 border-4 border-gray-300 border-t-transparent rounded-full animate-spin"></div>
+            <div className="w-6 h-6 border-4 border-gray-300 border-t-gray-500 rounded-full animate-spin"></div>
           </div>
         )}
+
         <Image
           src={hotel.images[0]}
           alt={hotel.title}
@@ -115,7 +118,7 @@ function HotelCard({ hotel }: { hotel: Hotel }) {
         <h3 className="font-semibold text-base truncate">{hotel.title}</h3>
         <p className="text-gray-500 text-sm truncate">{hotel.description}</p>
         <div className="flex items-center justify-between mt-2 text-sm">
-          <p className="font-semibold">${hotel.price}</p>
+          {hotel.price && <p className="font-semibold">${hotel.price}</p>}
         </div>
       </div>
     </div>
