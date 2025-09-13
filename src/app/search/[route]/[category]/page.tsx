@@ -10,7 +10,17 @@ interface Params {
   route: string;
   category: string;
 }
-
+interface Hotel {
+  _id: string;
+  division?: string;
+  city?: string;
+  title: string;
+  description: string;
+  price?: number;
+  images: string[];
+  isPopular?: boolean;
+  isFavourite?: boolean;
+}
 const fetchData = async (route: string, category: string, language: string) => {
   let url = "";
 
@@ -49,7 +59,7 @@ export default function Page({ params }: { params: Params }) {
         <p>No results found</p>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 mt-4">
-          {data.map((item: any) => (
+          {data.map((item: Hotel) => (
             <HotelCard key={item._id} hotel={item} />
           ))}
         </div>
