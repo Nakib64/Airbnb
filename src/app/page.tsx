@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import HotelsSection from "./HotelSection/Hotelsec";
+import HotelsSkeletonSection from "@/components/HotelSkeletonSec/HotelSkeletonSec";
+import HotelsSection from "@/components/HotelSection/Hotelsec";
 
 interface Hotel {
   _id: string;
@@ -24,7 +25,6 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
   const { i18n } = useTranslation("common");
-  console.log(i18n.language);
   // Ensure component only renders after client mounts
   useEffect(() => {
     setMounted(true);
@@ -53,7 +53,7 @@ export default function Home() {
   }, [i18n.language]);
 
   if (!mounted) return null; // ⬅️ prevents hydration mismatch
-  if (loading) return <p className="text-center mt-20">Loading...</p>;
+  if (loading) return <HotelsSkeletonSection></HotelsSkeletonSection>
 
 
   return (

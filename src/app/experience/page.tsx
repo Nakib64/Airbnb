@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import HotelsSection from "../HotelSection/Hotelsec";
+import HotelsSkeletonSection from "@/components/HotelSkeletonSec/HotelSkeletonSec";
+import HotelsSection from "@/components/HotelSection/Hotelsec";
+
 
 interface Hotel {
   _id: string;
@@ -53,7 +55,7 @@ export default function Experience() {
   }, [i18n.language]);
 
   if (!mounted) return null; // ⬅️ prevents hydration mismatch
-  if (loading) return <p className="text-center mt-20">Loading...</p>;
+  if (loading) return <HotelsSkeletonSection></HotelsSkeletonSection>
 
 
   return (
