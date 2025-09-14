@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
 import { t } from "i18next";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 interface Hotel {
@@ -18,8 +17,6 @@ interface Hotel {
 }
 export default function HotelCard({ hotel }: { hotel: Hotel }) {
     const [loaded, setLoaded] = React.useState(false);
-    const pathname = usePathname()
-const segment = pathname.split("/").filter(Boolean).pop() || "hotel";
     return (
         <Link href={`/details/${hotel._id}/${hotel.field}`}>
             <div className="relative rounded-xl overflow-hidden transition-all duration-300">

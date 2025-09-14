@@ -20,6 +20,7 @@ interface Hotel {
   images: string[];
   isPopular?: boolean;
   isFavourite?: boolean;
+  field: string;
 }
 const fetchData = async (route: string, category: string, language: string) => {
   let url = "";

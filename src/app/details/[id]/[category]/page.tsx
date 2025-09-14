@@ -23,6 +23,7 @@ interface Hotel {
   images: string[];
   isPopular?: boolean;
   isFavourite?: boolean;
+  field: string;
 }
 
 const Page = ({ params }: { params: Params }) => {
