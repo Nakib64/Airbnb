@@ -27,7 +27,7 @@ interface Hotel {
 
 const Page = ({ params }: { params: Params }) => {
   const { i18n, t } = useTranslation("common");
-  const { id, category } = params;
+  const { id, category } = React.use(params);
 
   const [data, setData] = useState<Hotel | null>(null);
   const [loading, setLoading] = useState(true);
