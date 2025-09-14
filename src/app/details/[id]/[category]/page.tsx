@@ -88,18 +88,18 @@ const Page = ({ params }: { params: Params }) => {
           className="relative w-full h-64 sm:h-80 md:h-[500px] rounded-2xl overflow-hidden shadow-xl"
         >
           <Image
-            src={data.images?.[0] || "/placeholder.png"}
-            alt={data.title}
+            src={data?.images?.[0] || "/placeholder.png"}
+            alt={data?.title}
             unoptimized
             fill
             className="object-cover hover:scale-105 transition-transform duration-500"
           />
-          {data.isPopular && (
+          {data?.isPopular && (
             <Badge className="absolute top-3 left-3 bg-primary text-white text-xs sm:text-sm">
               {t("pop")}
             </Badge>
           )}
-          {data.isFavourite && (
+          {data?.isFavourite && (
             <Badge className="absolute top-3 right-3 bg-pink-500 text-white text-xs sm:text-sm">
               {t("fav")}
             </Badge>
@@ -115,21 +115,21 @@ const Page = ({ params }: { params: Params }) => {
           <Card className="p-4 sm:p-6 shadow-lg rounded-2xl">
             <CardContent className="space-y-4 sm:space-y-6">
               <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
-                {data.title}
+                {data?.title}
               </h1>
               <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                {data.description}
+                {data?.description}
               </p>
 
-              {data.city && (
+              {data?.city && (
                 <p className="text-xs sm:text-sm text-muted-foreground">
-                  📍 {data.city}, {data.division}
+                  📍 {data?.city}, {data?.division}
                 </p>
               )}
 
-              {data.price && (
+              {data?.price && (
                 <p className="text-xl sm:text-2xl font-semibold text-primary">
-                  ${data.price}
+                  ${data?.price}
                 </p>
               )}
 
