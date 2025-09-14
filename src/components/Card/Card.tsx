@@ -14,13 +14,14 @@ interface Hotel {
     images: string[];
     isPopular?: boolean;
     isFavourite?: boolean;
+    field: string;
 }
 export default function HotelCard({ hotel }: { hotel: Hotel }) {
     const [loaded, setLoaded] = React.useState(false);
     const pathname = usePathname()
 const segment = pathname.split("/").filter(Boolean).pop() || "hotel";
     return (
-        <Link href={`/details/${hotel._id}/${segment}`}>
+        <Link href={`/details/${hotel._id}/${hotel.field}`}>
             <div className="relative rounded-xl overflow-hidden transition-all duration-300">
                 {/* Image container */}
                 <div className="relative w-full aspect-square">
