@@ -41,7 +41,7 @@ export const SearchFields = ({
   const fieldClass = "flex flex-col rounded-full py-2 px-4 hover:bg-gray-100";
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col md:flex-row gap-3">
       {/* Where */}
       <div className={fieldClass}>
         <label className="text-xs font-semibold text-gray-500">{t("where")}</label>
