@@ -49,6 +49,8 @@ const Page = ({ params }: { params: Params }) => {
     fetchDetails();
   }, [id, category, i18n.language]);
 
+  console.log(data);
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
