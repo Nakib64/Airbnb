@@ -70,19 +70,20 @@ const Page = ({ params }: { params: Params }) => {
   }
 
   return (
-    <div className="container mx-auto py-10 px-4">
+    <div className="container mx-auto py-8 px-4 overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="grid md:grid-cols-2 gap-8 items-start"
+        // 👉 Responsive grid: 1 col on mobile, 2 col on md+
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-start overflow-hidden"
       >
         {/* Left Column - Image */}
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl"
+          className="relative w-full h-64 sm:h-80 md:h-[500px] rounded-2xl overflow-hidden shadow-xl"
         >
           <Image
             src={data.images?.[0] || "/placeholder.png"}
@@ -92,12 +93,12 @@ const Page = ({ params }: { params: Params }) => {
             className="object-cover hover:scale-105 transition-transform duration-500"
           />
           {data.isPopular && (
-            <Badge className="absolute top-4 left-4 bg-primary text-white">
+            <Badge className="absolute top-3 left-3 bg-primary text-white text-xs sm:text-sm">
               {t("pop")}
             </Badge>
           )}
           {data.isFavourite && (
-            <Badge className="absolute top-4 right-4 bg-pink-500 text-white">
+            <Badge className="absolute top-3 right-3 bg-pink-500 text-white text-xs sm:text-sm">
               {t("fav")}
             </Badge>
           )}
@@ -109,28 +110,35 @@ const Page = ({ params }: { params: Params }) => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <Card className="p-6 shadow-lg rounded-2xl">
-            <CardContent className="space-y-5">
-              <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
+          <Card className="p-4 sm:p-6 shadow-lg rounded-2xl">
+            <CardContent className="space-y-4 sm:space-y-6">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
                 {data.title}
               </h1>
-              <p className="text-gray-600 leading-relaxed">{data.description}</p>
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                {data.description}
+              </p>
 
               {data.city && (
-                <p className="text-sm text-muted-foreground">
+                <p className="text-xs sm:text-sm text-muted-foreground">
                   📍 {data.city}, {data.division}
                 </p>
               )}
 
               {data.price && (
-                <p className="text-2xl font-semibold text-primary">
+                <p className="text-xl sm:text-2xl font-semibold text-primary">
                   ${data.price}
                 </p>
               )}
 
-              <div className="flex gap-4">
-                <Button className="rounded-2xl px-6">{t("book")}</Button>
-                <Button variant="outline" className="rounded-2xl px-6">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Button className="rounded-2xl px-5 sm:px-6 w-full sm:w-auto">
+                  {t("book")}
+                </Button>
+                <Button
+                  variant="outline"
+                  className="rounded-2xl px-5 sm:px-6 w-full sm:w-auto"
+                >
                   {t("wish")}
                 </Button>
               </div>
