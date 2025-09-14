@@ -13,7 +13,7 @@ interface Hotel {
     images: string[];
     isPopular?: boolean;
     isFavourite?: boolean;
-    field: string;
+    field?: string;
 }
 export default function HotelCard({ hotel }: { hotel: Hotel }) {
     const [loaded, setLoaded] = React.useState(false);

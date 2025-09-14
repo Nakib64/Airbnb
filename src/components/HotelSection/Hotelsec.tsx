@@ -21,7 +21,7 @@ interface Hotel {
   images: string[];
   isPopular?: boolean;
   isFavourite?: boolean;
-  field: string;
+ 
 }
 
 interface HotelsSectionProps {
