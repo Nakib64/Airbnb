@@ -94,7 +94,7 @@ export default function Navbar() {
 
           {/* Desktop SearchBar */}
           <div
-            className={`w-full md:w-auto transition-all duration-1000 ${
+            className={`w-full max-w-2xl transition-all duration-1000 ${
               hideNavButtons ? "-translate-y-4" : "translate-y-0"
             } md:mt-4`}
           >

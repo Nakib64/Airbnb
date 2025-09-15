@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { t } from "i18next";
 import { SearchFields } from "./SearchFields";
+import DesktopSearchFields from "./LgSearchFields";
 
 
 
@@ -18,8 +19,8 @@ const SearchBar = () => {
   return (
     <>
       {/* Desktop */}
-      <div className="md:grid hidden grid-cols-1 md:grid-cols-[2fr_1fr_1fr_2fr] gap-2 max-w-2xl lg:max-w-4xl mx-auto p-1 border-2 rounded-full shadow-md bg-white">
-        <SearchFields checkInDate={checkInDate} setCheckInDate={setCheckInDate} checkOutDate={checkOutDate} setCheckOutDate={setCheckOutDate} guests={guests} setGuests={setGuests} onSearch={handleSearch} />
+      <div className="">
+        <DesktopSearchFields checkInDate={checkInDate} setCheckInDate={setCheckInDate} checkOutDate={checkOutDate} setCheckOutDate={setCheckOutDate} guests={guests} setGuests={setGuests} onSearch={handleSearch} />
       </div>
 
       {/* Mobile: reuse the same div */}
